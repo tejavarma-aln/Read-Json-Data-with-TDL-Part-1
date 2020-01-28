@@ -1,0 +1,79 @@
+;; create a collection to read json data
+
+[Collection:JsonUsersColl]
+	Data Source:File JSON:"UserReport.json"     ; file path/name
+	JSON Object Path:users:1                          ;main object path
+    Client Only:Yes                                        ;for client side only
+
+
+;; let me quickly create a report to show the users data
+
+
+[#Menu:gatewayoftally]
+	Add:Item:Display User Data:Display:User Report
+	
+[Report:User Report]
+	Form:User Report
+	
+[Form:User Report]
+	Part:User Report
+	
+[Part:User Report]
+	Scroll:Both
+	Common Border:Yes
+	Line:User Report Titles,User Report Data
+	Repeat:User Report Data:JsonUsersColl
+	
+[Line:User Report Titles]
+	Fields:UserIdNo,UserFirstName,UserLastName,UserNumber,UserEmail
+	Local:Field:UserIdNo:Set as:"Id"
+	Local:Field:UserFirstName:Set as:"FirstName"
+	Local:Field:UserLastName:Set as:"LastName"
+	Local:Field:UserNumber:Set as:"Contact"
+	Local:Field:UserEmail:Set as:"Email"
+	Local:Field:default:Style:Normal Bold
+	Local:Field:default:Align:Left
+	Local:Field:default:Border:thinright
+	Border:thickbottom
+
+
+
+[Line:User Report Data]
+	Space Top:0.5
+	Fields:UserIdNo,UserFirstName,UserLastName,UserNumber,UserEmail
+    Border:thinbottom
+
+[Field:UserIdNo]
+	Set as:$UserId
+	Width:5
+	
+	
+[Field:UserFirstName]
+	Set as:$firstName
+	Width:20
+	
+[Field:UserLastName]
+	Set as:$lastName
+	Width:20
+	
+[Field:UserNumber]
+	Set as:$phoneNumber
+	Width:20
+	
+[Field:UserEmail]
+	Set as:$emailAddress
+	Width:30
+
+ 
+
+	
+
+    
+	;; load and run 
+
+	
+ 
+	
+ 
+	
+	
